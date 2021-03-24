@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulários</title>
+        <style>
+            body {
+                background-color: lightgray;
+                font-size: 1.2rem;
+            }
+            section{
+                margin: 40px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <section>
+            <h2>Editar Clientes</h2>
+            <form action="/atualizar" method="POST">
+                <p>
+                    <label for="nome_atual">Nome Atual</label>
+                    <input type="text" name="nome_atual" id="nome_atual" value="{{ nome }}" readonly>
+                </p>
+                <p>
+                    <label for="nome">Novo Nome</label>
+                    <input type="text" name="nome" id="nome">
+                </p>
+                <input type="hidden" name="id" value={{id}}>
+                <input type="submit" value="Atualizar">
+                <button><a href="/" style='color:black;text-decoration: none;'>VOLTAR</a></button>
+            </form>  
+        </section>
+        
+    </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        <style>
+            body {
+                background-color: lightgray;
+                font-size: 1.2rem;
+            }
+            section{
+                margin: 20vh auto;
+                width: 30%;
+                padding: 4vh 2vw;
+                text-align: center;
+                background-color: gray;
+            }
+        </style>
+    </head>
+    <body>
+        <section>
+            <h2>Login</h2>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class=flashes>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+            <form action="/autenticar" method="POST">
+                <p>
+                    <label for="nome">Nome:</label>
+                    <input type="text" name="nome" id="nome">
+                </p>
+                <p>
+                    <label for="password">Senha:</label>
+                    <input type="password" name="password" id="password"> 
+                </p>
+                
+                <input type="submit" value="Submit">
+            </form>
+        </section>        
+    </body>
+</html>
