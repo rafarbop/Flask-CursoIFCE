@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulários</title>
+    <style>
+        body{
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #eeeeee;
+            font-size: 1.1rem;
+            color: #112255;
+        }
+        header{
+            padding: 4vh 2vw;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            background-color: #aaaaaa;
+            color: #111166;
+            text-shadow: 1px 1px 2px #000000;
+        }
+        header a{
+            text-decoration: underline;
+            text-decoration-style: double;
+            text-decoration-color: #222222;
+            color: inherit;
+        }
+        section{
+            padding: 0 2vw 2vw 2vw;
+        }
+        h2 {
+            text-align: center;
+        }
+        .container {
+            margin-top: 20px;
+            padding-bottom: 10px;
+            border: 2px solid #445555;
+            text-align: center;
+        }
+        .container>p {
+            margin: auto auto 20px auto;
+            width: 160px;
+            background-color: #aaaaaa;
+            padding: 6px;
+            border-radius: 8px;
+        }
+        section a{
+            color: inherit;
+            text-decoration: none;
+        }
+        section a:hover{
+            color: #0044aa;
+            font-weight: 600;
+        }
+        table {
+            font-family: Arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        td, th {
+            border: 2px solid #445555;
+            text-align: center;
+            padding: 8px;
+        }
+        td:nth-child(2) {
+            width: 60%;
+        }
+        tr:nth-child(odd) {
+            background-color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <span>
+            Seja Bem Vindo
+            <em>
+            {% if session['usuario_logado']  %}
+            {{ session['usuario_logado'] }}
+            {% endif %}
+            </em>
+        </span>
+        <span>
+            {% if session['usuario_logado']  %}
+            <a href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+            <a href="{{ url_for('login') }}">Login</a>
+            {% endif %}
+        </span>
+    </header>
+    <section id='main'>
+        <h2>Clientes</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>EDITAR Clientes</th>
+                <th>DELETAR Clientes</th>
+            </tr>
+            {% for usuario in usuarios %}
+            <tr>
+                <td>{{usuario._id}}</td>
+                <td>{{usuario.nome}}</td>
+                <td><a href="{{ url_for('editar', id=usuario._id) }}">EDITAR</a></td>
+                <td><a href="{{ url_for('deletar', id=usuario._id) }}">DELETAR</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <div class="container">
+            <h3>Gerenciamento dos Clientes</h3>
+            <p>
+                <a href="{{ url_for('novo') }}">INCLUIR CLIENTE</a>
+            </p>
+        </div>
+    </section>    
+</body>
+</html>
